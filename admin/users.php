@@ -130,7 +130,7 @@ $admins = $pdo->query('SELECT id, username FROM admins ORDER BY id ASC')->fetchA
               </td>
               <td>
                 <?php if ($a['id'] != $_SESSION['admin_id']): ?>
-                <form method="post" onsubmit="return confirm('Delete admin \"<?= htmlspecialchars($a['username']) ?>\"? This cannot be undone.');">
+                <form method="post" onsubmit="return confirm('Delete admin ' + JSON.stringify(<?= json_encode($a['username']) ?>) + '? This cannot be undone.');">
                   <input type="hidden" name="action" value="delete">
                   <input type="hidden" name="del_id" value="<?= $a['id'] ?>">
                   <button type="submit" class="del-btn">Delete</button>
@@ -172,4 +172,3 @@ $admins = $pdo->query('SELECT id, username FROM admins ORDER BY id ASC')->fetchA
   </div>
 </body>
 </html>
-
